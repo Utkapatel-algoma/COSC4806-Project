@@ -66,22 +66,20 @@
                 echo "<p class='text-gray-300 mb-2'><strong class='text-blue-200'>Plot:</strong> " . htmlspecialchars($movieData['Plot']) . "</p>";
                 echo "<p class='text-gray-300 mb-2'><strong class='text-blue-200'>IMDB Rating:</strong> " . htmlspecialchars($movieData['imdbRating']) . " (" . htmlspecialchars($movieData['imdbVotes']) . " votes)</p>";
 
-                // Added: YouTube Trailer Section
+                // Updated: YouTube Trailer Section - now a button
                 $trailerSearchQuery = urlencode($movieData['Title'] . " " . $movieData['Year'] . " official trailer");
-                $youtubeEmbedUrl = "https://www.youtube.com/embed?listType=search&list=" . $trailerSearchQuery;
+                $youtubeSearchUrl = "https://www.youtube.com/results?search_query=" . $trailerSearchQuery;
 
-                echo "<div class='mt-6 p-4 bg-gray-800 rounded-md'>";
-                echo "<h3 class='text-xl font-semibold text-gray-200 mb-3'>Movie Trailer</h3>";
-                echo "<div class='relative' style='padding-bottom: 56.25%; height: 0; overflow: hidden;'>"; // Aspect ratio container
-                echo "<iframe
-                        src='{$youtubeEmbedUrl}'
-                        frameborder='0'
-                        allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
-                        allowfullscreen
-                        class='absolute top-0 left-0 w-full h-full rounded-md'
-                    ></iframe>";
-                echo "</div>"; // Closed: relative
-                echo "<p class='text-gray-400 text-sm mt-2 text-center'>Note: Trailer search is automatic and may not always show the exact official trailer.</p>";
+                echo "<div class='mt-6 p-4 bg-gray-800 rounded-md text-center'>";
+                echo "<h3 class='text-xl font-semibold text-gray-200 mb-3'>Watch Trailer</h3>";
+                echo "<a
+                        href='{$youtubeSearchUrl}'
+                        target='_blank'
+                        class='inline-block px-6 py-3 bg-red-600 hover:bg-red-700 text-white font-bold rounded-md shadow-md transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-red-500'
+                    >
+                        View Trailer on YouTube
+                    </a>";
+                echo "<p class='text-gray-400 text-sm mt-2'>Opens in a new tab.</p>";
                 echo "</div>"; // Closed: trailer section
 
                 echo "</div>"; // Closed: md:w-2/3
