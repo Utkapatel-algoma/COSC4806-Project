@@ -65,6 +65,25 @@
                 echo "<p class='text-gray-300 mb-2'><strong class='text-blue-200'>Actors:</strong> " . htmlspecialchars($movieData['Actors']) . "</p>";
                 echo "<p class='text-gray-300 mb-2'><strong class='text-blue-200'>Plot:</strong> " . htmlspecialchars($movieData['Plot']) . "</p>";
                 echo "<p class='text-gray-300 mb-2'><strong class='text-blue-200'>IMDB Rating:</strong> " . htmlspecialchars($movieData['imdbRating']) . " (" . htmlspecialchars($movieData['imdbVotes']) . " votes)</p>";
+
+                // Added: YouTube Trailer Section
+                $trailerSearchQuery = urlencode($movieData['Title'] . " " . $movieData['Year'] . " official trailer");
+                $youtubeEmbedUrl = "https://www.youtube.com/embed?listType=search&list=" . $trailerSearchQuery;
+
+                echo "<div class='mt-6 p-4 bg-gray-800 rounded-md'>";
+                echo "<h3 class='text-xl font-semibold text-gray-200 mb-3'>Movie Trailer</h3>";
+                echo "<div class='relative' style='padding-bottom: 56.25%; height: 0; overflow: hidden;'>"; // Aspect ratio container
+                echo "<iframe
+                        src='{$youtubeEmbedUrl}'
+                        frameborder='0'
+                        allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
+                        allowfullscreen
+                        class='absolute top-0 left-0 w-full h-full rounded-md'
+                    ></iframe>";
+                echo "</div>"; // Closed: relative
+                echo "<p class='text-gray-400 text-sm mt-2 text-center'>Note: Trailer search is automatic and may not always show the exact official trailer.</p>";
+                echo "</div>"; // Closed: trailer section
+
                 echo "</div>"; // Closed: md:w-2/3
                 echo "</div>"; // Closed: flex
                 echo "</div>"; // Closed: movie details container
